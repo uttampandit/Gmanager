@@ -1,0 +1,26 @@
+
+main{
+    margin-top:auto;
+}
+.row .col-md-5, .row .col-md-7{
+    background-color: #F1FAEE;
+    font-size: large;
+    /* border : 1px solid #457B9D; */
+    border-radius: 0.2em;
+}
+h2{
+    font-weight: 500;
+}
+p {
+text-align: center;
+font-size: 1.2em;
+}
+
+.signIn{
+    padding: 0;
+    border : 0;
+    height: 3em;
+}
+.signIn:hover{
+    box-shadow: rgba(69, 123, 157, 0.35) 0px 5px 15px;
+}

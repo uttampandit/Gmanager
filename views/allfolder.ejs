@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <%- include('partials/bootstrap.ejs') %>
+    <link rel="stylesheet" href="/css/main/allfoldercss.css">
+    <link rel="stylesheet" href="/css/general/header.css">
+    <link rel="stylesheet" href="/css/general/footer.css">
+   
+    <title>All Folders</title>
+</head>
+<body>
+ <!-- navbar -->
+ <nav class="navbar navbar-expand-md sticky-top navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/userprofile">Gmanager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href="/search"  class="nav-link">Search Mail</a></li>
+          <li class="nav-item"><a href="/<%= userFind._id %>/fill" class="nav-link ">Manage Folders</a></li>
+          <li class="nav-item"><a href="" class="nav-link active disabled">All Folders</a></li>
+        </ul>
+        <div class="navbar-nav-logout">
+          <button class='logout btn'>Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- /navbar -->
+  
+  <div class="form-floating">
+    <input type="text" class="form-control" id="searchbar" placeholder="Search">
+    <label for="searchbar">Search Here</label>
+  </div>
+<div class="container mx-auto my-auto">
+    <% if(userFind.input.length!=0) {%> 
+        <div class="row">
+        <% for(let i = 0;i<userFind.input.length;i++) {%>
+                <!-- <div class="col-md-3 col-1 col-sm-2 folder">
+                    <a href="/<%=userFind._id%>/search/<%=userFind.input[i].searchEmail%>"><%= userFind.input[i].name  %></a>
+                </div> -->
+                <div class="divs  col-md-4 col-6 col-sm-6 p-1 <% if(userFind.input.length == 1){ %>mx-auto<% } %> <% if(userFind.input.length == 2){ %>col-lg-6 pl-auto<% }else if(userFind.input.length == 3){%>col-lg-4 <%}else{ %>col-lg-3<%} %>">
+                    <form action="/<%=userFind._id%>/search/<%=userFind.input[i].searchEmail%>" class='folderform' method="post" >
+                       <div class="folder">
+                        <button type='submit' class = 'btn'><span id='name<%= i %>' class='buttonName'><%= userFind.input[i].name  %></span> 
+                            <div class="d-flex justify-content-center"><span id="spinner<%= i %>" class="spinner-grow spinner-border-lg" role="status" style = "display: none;"aria-hidden="true"></span>
+                            </div></button>
+                       </div>
+                      
+                    </form>
+                </div>
+                
+            
+           
+            <% } %> 
+        </div>
+        <% }else { %>
+          <div class="no-folder mt-3 pt-2 d-flex justify-content-center">
+            <div class="nofoldericon"><svg xmlns="http://www.w3.org/2000/svg" width="5.5em" height="5.5em" fill="red" class="bi bi-folder2-open" viewBox="0 0 16 16">
+              <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v.64c.57.265.94.876.856 1.546l-.64 5.124A2.5 2.5 0 0 1 12.733 15H3.266a2.5 2.5 0 0 1-2.481-2.19l-.64-5.124A1.5 1.5 0 0 1 1 6.14V3.5zM2 6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5a.5.5 0 0 0-.5.5V6zm-.367 1a.5.5 0 0 0-.496.562l.64 5.124A1.5 1.5 0 0 0 3.266 14h9.468a1.5 1.5 0 0 0 1.489-1.314l.64-5.124A.5.5 0 0 0 14.367 7H1.633z"/>
+            </svg></div>
+            <div class="text ml-1">
+              <h3 style="padding-top: 1.3em; margin-left: 0.4em; color:red;">No folder</h3>
+            </div>
+          </div>
+          <div class="text-center makeFolderMessage">To make new folders go to <a class='messagelink' href="/<%= userFind._id %>/fill">Manage Folders</a> page</div>
+         <% } %> 
+</div>
+
+
+
+
+
+         <%- include('partials/footer.ejs') %>
+         <%- include('partials/signout.ejs') %>
+                <%- include('partials/bootstrapjs.ejs') %>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+         <script>
+             const forms = document.querySelectorAll('.folderform');
+             forms.forEach((form,index) =>{
+                 form.addEventListener('submit',()=>{
+                     
+                    document.querySelector(`#name${index}`).style.display = 'none';
+                    let spinner = document.querySelector(`#spinner${index}`);
+                    spinner.style.display = 'block';
+                 })
+             })
+
+
+
+             //search 
+             const spans = document.querySelectorAll('.buttonName')
+             const search = document.querySelector('#searchbar');
+             search.addEventListener('keyup',(e)=>{
+                spans.forEach((sp)=>{
+                    if(sp.textContent.toUpperCase().indexOf(search.value.toUpperCase()) == -1){
+                        sp.parentElement.parentElement.parentElement.parentElement.style.display = 'none';
+                    }else{
+                        sp.parentElement.parentElement.parentElement.parentElement.style.display = 'block';
+                    }
+                })
+             })
+
+         </script>
+</body>
+</html>

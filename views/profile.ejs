@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="124401388339-qsdjccd2lc6sraniaoup7u0dm77ub8rf.apps.googleusercontent.com"
+    />
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <%- include('partials/bootstrap.ejs') %>
+    <link rel="stylesheet" href="css/general/footer.css" />
+    <link rel="stylesheet" href="css/main/profile.css" />
+    <link rel="stylesheet" href="css/general/header.css" />
+    <link rel="stylesheet" href="css/general/alert.css" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md sticky-top navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/userprofile">Gmanager</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <button class="logout btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- /navbar -->
+    <!-- <button class='profile'>Click me to see profile</button> -->
+    <div class="myprofile"></div>
+    <div class="displayName">Welcome! <%=userFind.display_name%></div>
+
+    <div class="container mt-auto">
+      <%- include('partials/alert.ejs') %>
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="card search">
+            <svg
+              class="mx-auto my-5"
+              xmlns="http://www.w3.org/2000/svg"
+              width="4rem"
+              height="4rem"
+              fill="currentColor"
+              class="bi bi-search"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+            <div class="card-body">
+              <h3 class="card-title text-center">Search</h3>
+              Directly access all the pdfs send by any gmail by searching
+              through this searching feature. This search result will not be
+              stored and is used to quickly gather all pdf for temporary use
+              only.
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card manage">
+            <svg
+              class="mx-auto my-5"
+              xmlns="http://www.w3.org/2000/svg"
+              width="4rem"
+              height="4rem"
+              fill="currentColor"
+              class="bi bi-card-list"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"
+              />
+              <path
+                d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"
+              />
+            </svg>
+
+            <div class="card-body">
+              <h3 class="card-title text-center">Manage Folders</h3>
+              Manage all your folders. Management includes creating new
+              folders,editing old ones and deleting old ones.Also view all the
+              folder name and corresponding emails right at one place.
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4">
+          <div class="card all">
+            <svg
+              class="mx-auto my-5"
+              xmlns="http://www.w3.org/2000/svg"
+              width="4rem"
+              height="4rem"
+              fill="currentColor"
+              class="bi bi-envelope"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"
+              />
+            </svg>
+
+            <div class="card-body">
+              <h3 class="card-title text-center">All Folders</h3>
+
+              View all the folders and their corresponding pdf storred right
+              here.You can also search the folder and query pdf like searching
+              it and also sorting according to date it has recieved by you.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <%- include('partials/signout.ejs') %>
+
+    <script>
+      // const button = document.querySelector(".profile");
+      //   button.addEventListener('click',async (e)=>{
+      //       const res = await axios('/getprofile');
+      //       const myprofile = document.querySelector('.myprofile');
+      //       myprofile.textContent=JSON.stringify(res.data)
+      //   })
+
+      //adding functionalities to card
+      const search = document.querySelector(".search");
+      const all = document.querySelector(".all");
+      const manage = document.querySelector(".manage");
+
+      search.addEventListener("click", () => {
+        location.assign("/search");
+      });
+      all.addEventListener("click", () => {
+        location.assign("/<%=userFind._id%>/allfolder");
+      });
+      manage.addEventListener("click", () => {
+        location.assign("/<%=userFind._id%>/fill");
+      });
+    </script>
+    <%- include('partials/bootstrapjs.ejs') %>
+  </body>
+</html>

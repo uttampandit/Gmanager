@@ -1,0 +1,70 @@
+.sidebar{
+    border-right: #CED4DA 0.15rem solid;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.form-control:focus{
+box-shadow:none;
+}
+.pdfButton{
+    width:100%;
+    height: 100%;
+    font-size: 1.2em;
+    background-color: white;
+    color:#1d3557;
+    min-height: 7em;
+    border: solid 0.1em #e63946;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+}
+.pdf{
+margin-top: 0.25em;
+margin-bottom: 0.25em;
+transition: all 0.3s linear;
+}
+.pdf:hover .pdfButton{
+  background-color: white;
+  border-color: #457b9d;
+  color:#1d3557;
+  
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.fromdatelabel , .todatelabel{
+  font-size: 1.2em;
+}
+@media (min-width:768px) {
+  .datepicker{
+    flex-direction: column;
+  }
+}
+@media (max-width:768px) {
+  .from , .to{
+    text-align: center;
+    width:50%;
+  }
+  .sidebar{
+    border-right:none;
+  }
+}
+.heading{
+  border-bottom: #CED4DA 0.15rem solid;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.reset{
+  width:50%;
+  background-color: #a8dadc;
+  color: black;
+  margin-left: 0.4em;
+}
+.filter{
+  width:50%;
+}
+.error-date{
+  width: 100%;
+  border-radius: 00.25em;
+  border:#e63946 2px solid;
+  color:#e63946;
+  margin-top: 00.25em;
+  text-align: center;
+}

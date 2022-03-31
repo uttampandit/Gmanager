@@ -1,0 +1,47 @@
+.logout{
+    background-color: #A8DADC;
+    border: 0;
+  
+    font-size: 1.2em;
+    
+    padding:0.3em;
+    transition: all 0.2s linear;
+}
+.logout:hover{
+    background-color: #457B9D;
+    color: white;
+}
+.navbar-nav{
+    margin-left: auto;
+}
+.card{
+    transition: all .2s ease;
+}
+.card:hover{
+    box-shadow: rgba(69, 123, 157, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    border-color: #E63946;
+}
+.displayName{
+    font-size: 1.2em;
+    width: 20%;
+    padding: 0.5em;
+    background-color: #457B9D;
+    color : white;
+    border-radius: 0 2.5rem 2.5rem 0;
+}
+@media (max-width: 768px) {
+.displayName{
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+    padding: 0.5em;
+    background-color: #457B9D;
+    color : white;
+    border-radius: 0;
+}
+}
+
+#modalButton{
+    display:none;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="124401388339-qsdjccd2lc6sraniaoup7u0dm77ub8rf.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title><%if(folderName){ %> 
+      <%= folderName %>
+      <% }else{%> 
+        Search Result
+        <% } %> </title>
+    <%- include('partials/bootstrap.ejs') %>
+    <link rel="stylesheet" href="/css/main/logout.css">
+    <link rel="stylesheet" href="/css/general/header.css">
+    <link rel="stylesheet" href="/css/general/footer.css">
+    <link rel="stylesheet" href="/css/pdf/pdf.css">
+    
+</head>
+<body>
+    <!-- navbar -->
+  <nav class="navbar navbar-expand-md sticky-top navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/userprofile">Gmanager</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a href='/search'  class="nav-link searchMail">Search Mail</a></li>
+          <li class="nav-item"><a href="/<%= userFind._id %>/fill" class="nav-link">Manage Folders</a></li>
+          <li class="nav-item"><a href="/<%= userFind._id %>/allfolder" class="nav-link">All Folders</a></li>
+        </ul>
+        <div class="navbar-nav-logout">
+          <button class='logout btn'>Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- /navbar -->
+
+  
+<main class="content mt-2">
+<div class="container-fluid">
+  <div class="row ">
+  <div class="sidebar col-xl-2 col-md-3">
+    <form action="">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg></div>
+        </div>
+        <input type="text" placeholder='Search' class="form-control" id='search'>
+    </div>
+  </form>
+    </div>
+    <!-- <form action="">
+      <input type="text"  style="width:100%">
+     </form> -->
+     
+     <select name="sort" class="form-select mt-4" id="sort">
+         <option value="newestFirst">newestFirst</option>
+         <option value="oldestFirst">oldestFirst</option>
+     </select>
+    
+     <!-- date picker  -->
+     <div class="datepicker d-flex">
+       <div class="from mt-3">
+      <label for="fromdate" class='fromdatelabel'>From Date</label>
+      <input class='form-control fromdate' type="date">
+    </div>
+    <div class="to mt-3">
+      <label for="todate" class='todatelabel'>To Date</label>
+      <input class='form-control todate'type="date">
+      </div>
+    </div>
+    
+    <div class="d-flex">
+    <button class="btn btn-success filter mt-2">Filter</button>
+    <button class="btn reset mt-2">Reset</button>
+  </div>
+  </div>
+  <div class="main-screen col-xl-10 col-md-9">
+    <div class="heading">
+    <%if(folderName){ %> 
+      <h1 class='display-4'><%= folderName %></h1>
+      <% }else{%> 
+        <h3 class='display-4' style="text-align:start;">Search Result</h3>
+        <% } %> 
+      </div>
+     <% if(messages.length!=0){ %>
+    <div class="container-fluid justify-content-center">
+     <div class="row pdfRow" >
+     <%  for(let i=0;i<messages.length;i++) { %>
+     <div class = 'pdf col-6 col-lg-4 col-md-6 col-xl-3' id = 'pdf<%= i %>'>
+      <button class='btn pdfButton' id='button<%= i %>'> <span id="filename<%=i %>"><%= messages[i].filename %></span></button>
+        <span id="messageid<%= i %>" style="display : none;"><%= messages[i].message_id%> </span>
+        <span id='date<%= i %>' style="display : none;"><%= messages[i].date %> </span>
+        <span id="attachmentid<%= i %>" style="display : none;"><% var attachment_id = messages[i].attachment_id %> 
+          <%=attachment_id%> </span>
+      </div>
+              <% } %>
+              <span class='filename-length' style="display : none;"> <%= messages.length %></span>
+     </div>
+    </div>
+          <% }else{%> <div class="container d-flex justify-content-center pt-3 errorcontainer"><svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" fill="red" class="bi bi-file-earmark-excel" viewBox="0 0 16 16">
+            <path d="M5.884 6.68a.5.5 0 1 0-.768.64L7.349 10l-2.233 2.68a.5.5 0 0 0 .768.64L8 10.781l2.116 2.54a.5.5 0 0 0 .768-.641L8.651 10l2.233-2.68a.5.5 0 0 0-.768-.64L8 9.219l-2.116-2.54z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+          </svg> <div class="d-flex flex-direction-column"><h2 style='margin-top: auto ;color: red;'>No pdf found!</h2></div> </div> <%} %>
+  </div>
+ 
+      </div>
+         </div>
+      </main>
+    <!-- <div class='outlay'></div> -->
+    <%- include('partials/footer.ejs') %>
+         <%- include('partials/signout.ejs') %>
+                <%- include('partials/bootstrapjs.ejs') %>
+                
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/script-message.js"></script>
+   
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('partials/bootstrap.ejs') %>
+    <link rel="stylesheet" href="/css/general/footer.css">
+    <link rel="stylesheet" href="/css/general/header.css">
+    <link rel="stylesheet" href="/css/general/error.css">
+    <title><%= err.message %></title>
+</head>
+<body>
+    <nav class="navbar sticky-top  navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand mx-auto " href="/userprofile">Gmanager</a>
+        </div>
+      </nav>
+      <main class='d-flex mt-auto'> 
+        <div class="error alert alert-danger">
+          <div class="display-error d-flex">
+            <span class='error-message'><%= err.message%></span></div>
+          
+          </div>
+           
+        </div>
+      </main>
+      <%- include('partials/footer.ejs') %> 
+      <%- include('partials/bootstrapjs.ejs') %>
+</body>
+</html>

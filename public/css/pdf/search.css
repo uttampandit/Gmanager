@@ -1,0 +1,22 @@
+.containerform{
+    box-sizing: border-box;
+    border-radius: 0.25em;
+    padding : 2em;
+    width: 50%;
+    margin-top: auto;
+    margin : auto auto;
+    border: 2px inherit solid;
+    background-color: #FAFAFA;
+}
+.searchButton{
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .containerform{
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        padding-right: 0.2em;
+        padding-left: 0.2em;
+        width: 95%;
+    }
+}

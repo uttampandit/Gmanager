@@ -1,0 +1,15 @@
+<script>
+    
+    const signout = document.querySelector('.logout');
+    signout.addEventListener('click',async (e)=>{
+      const res = await axios.get("/<%=userFind._id%>/signout");
+      if(res.data){
+        location.assign('/')
+      }
+    })
+    window.addEventListener('unload',async ()=>{
+      await axios.get("/<%=userFind._id%>/signout");
+    })
+
+    
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="124401388339-qsdjccd2lc6sraniaoup7u0dm77ub8rf.apps.googleusercontent.com"
+    />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <%- include('partials/bootstrap.ejs') %>
+    <title>Gmanager</title>
+    <link rel="stylesheet" href="css/general/footer.css" />
+    <link rel="stylesheet" href="css/main/home.css" />
+    <link rel="stylesheet" href="css/general/header.css" />
+  </head>
+
+  <body>
+    <nav class="navbar sticky-top navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand mx-auto" href="/">Gmanager</a>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="row shadow">
+          <div class="col-md-7">
+            <h2 class="text-center">Welcome User!</h2>
+            <p>
+              <span id="brandName">Gmanager</span> helps you to manage your
+              Gmail attachments(pdf) systematically and segregate them according
+              to your wish. Quickly access any pdf you wish. No need to search
+              mail and attachment every time on your Gmail, rather this website
+              stores all the pdf of every email you specify under each folder
+              you wish.Just signIn through your gmail account to which you
+              recieve those attachments and give permissions to read the mail
+              when first time signIn.We will never access your documents.
+            </p>
+          </div>
+          <div class="col-md-5">
+            <div
+              class="d-flex flex-column justify-content-center"
+              style="height: 100%"
+            >
+              <h1 class="text-center">SignIn Here</h1>
+              <form action="/login" method="post">
+                <button class="signIn mx-auto" style="display: block">
+                  <img
+                    src="google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png"
+                    height="100%"
+                    width="100%"
+                    alt=""
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('partials/footer.ejs') %> <%-
+    include('partials/bootstrapjs.ejs') %>
+  </body>
+</html>

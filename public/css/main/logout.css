@@ -1,0 +1,18 @@
+/* styling logout */
+.logout{
+    background-color: #A8DADC;
+    border: 0;
+  
+    font-size: 1.2em;
+    
+    padding:0.3em;
+    transition: all 0.2s linear;
+  }
+  .logout:hover{
+    background-color: #457B9D;
+    color: white;
+  }
+  
+  .navbar-nav-logout{
+    margin-left: auto;
+  }

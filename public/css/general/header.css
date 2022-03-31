@@ -1,0 +1,41 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.navbar{
+    background-color: #E63946;
+}
+#brandName{
+    color : #E63946;
+    font-weight: 500;
+}
+.navbar-brand{
+    font-weight: 900;
+    font-size: 1.3em;
+}
+/* modal css */
+.modal-close{
+    border:0;
+    background-color: white;
+    font-size:2em;
+}
+.searchForm {
+    font-size: 1.4em;
+}
+.input-group-text{
+    height: 100%;
+}
+#modalButton{
+    transition:all .3s ease;
+}
+.spinner-grow-sm {
+    width: 1em;
+    height: 1em;
+    margin-left: 0.3em;
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('partials/bootstrap.ejs') %>
+    <link rel="stylesheet" href="/css/general/header.css" />
+    <link rel="stylesheet" href="/css/general/footer.css" />
+    <link rel="stylesheet" href="/css/main/edit.css" />
+    <link rel="stylesheet" href="/css/general/alert.css" />
+    <style>
+      .delete:hover,
+      .update:hover {
+        cursor: pointer;
+      }
+    </style>
+    <title>Edit</title>
+  </head>
+  <body>
+    <!-- navbar --><span class="id" style="display: none"
+      ><%= userFind._id%></span
+    >
+    <nav class="navbar navbar-expand-md sticky-top navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/userprofile">Gmanager</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/search" class="nav-link searchMail">Search Mail</a>
+            </li>
+            <li class="nav-item">
+              <a href="/<%= userFind._id %>/fill" class="nav-link active"
+                >Manage Folders</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="/<%= userFind._id %>/allfolder" class="nav-link"
+                >All Folders</a
+              >
+            </li>
+          </ul>
+          <div class="navbar-nav-logout">
+            <button class="logout btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- /navbar -->
+    <%- include('partials/modal.ejs') %>
+    <div class="container">
+      <%- include('partials/alert.ejs') %>
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="text-center">Edit</h1>
+          <form
+            action="/<%= searchInput._id%>/edit?_method=PUT"
+            method="POST"
+            class="validation"
+            novalidate
+          >
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label">Folder</label>
+              <div class="col-md-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="<%=searchInput.name%>"
+                  required
+                  name="input[newName]"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label">Email</label>
+              <div class="col-md-10">
+                <input
+                  type="email"
+                  class="form-control"
+                  value="<%"
+                  ="searchInput.searchEmail%"
+                />
+                required name="input[newSearchEmail]">
+              </div>
+            </div>
+            <div class="containers">
+              <div class="select-box">
+                <div class="options-containers"></div>
+                <div class="selected">Select from existing emails</div>
+                <div class="search-box">
+                  <input type="text" placeholder="Search here" />
+                </div>
+              </div>
+            </div>
+            <div class="button d-flex">
+              <button class="btn update-button mx-auto btn-primary btn-md mt-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  fill="white"
+                  class="bi bi-pencil-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+                  />
+                </svg>
+                <span class="update-text">Update</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <h1 class="text-center">Existing folders</h1>
+          <% if(userFind.input) {%> <% for(let input of userFind.input) {%> <%
+          if(input._id !== searchInput._id) {%>
+          <div class="container-fluid">
+            <div class="name text-center">
+              <span class="bold">Folder Name : </span><%= input.name%>
+            </div>
+            <div class="email text-center">
+              <span class="bold">Email : </span><%= input.searchEmail %>
+            </div>
+            <div class="update">
+              <div title="Edit" class="edit">
+                <a
+                  class="editButton"
+                  href="/<%= userFind._id %>/<%= input._id%>/edit"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    fill="white"
+                    class="bi bi-pencil-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"
+                    /></svg
+                ></a>
+              </div>
+              <div title="Delete" class="delete">
+                <form
+                  action="/<%= userFind._id %>/<%= input._id%>/delete?_method=DELETE"
+                  method="POST"
+                  class=""
+                >
+                  <button class="deletebutton">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      fill="white"
+                      class="bi bi-trash-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
+                      />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <% } %> <% } %> <% }else{ %>
+          <h2>Not made any,Fill the form to start making the folder</h2>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <%- include('partials/signout.ejs') %> <%-
+    include('partials/bootstrapjs.ejs') %>
+    <script src="/js/edit.js"></script>
+  </body>
+</html>
