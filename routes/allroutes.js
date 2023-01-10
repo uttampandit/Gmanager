@@ -68,7 +68,7 @@ passport.use(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://gmanager.onrender.com//profile",
+      callbackURL: "https://gmanager.onrender.com/profile",
     },
     async function (accessToken, refreshToken, profile, done) {
       user.findOne({ googleId: profile.id }).then((currentUser) => {
