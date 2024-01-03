@@ -1,4 +1,5 @@
 //joi validate function
+const Joi = require("joi");
 function joiValidate(req){
     const schema = Joi.object({
         searchEmail : Joi.string().email().required(),
